@@ -1,5 +1,4 @@
 set system host-name P1
-set system root-authentication encrypted-password "$6$R1km0b8B$rZQWu43WU28sy6nPjo4rdAv1VW62ladjWZNWQuXHuCX6K2V5FItWFenXHGlZQXBHaBO4LRgB3kP7dEpb5qWSO."
 set interfaces et-0/0/0 unit 0 family inet address 10.10.10.6/30
 set interfaces et-0/0/0 unit 0 family iso
 set interfaces et-0/0/0 unit 0 family inet6
@@ -15,8 +14,10 @@ set interfaces et-0/0/2 unit 0 family mpls maximum-labels 16
 set interfaces et-0/0/3 unit 0 family inet address 10.10.10.14/31
 set interfaces et-0/0/3 unit 0 family iso
 set interfaces et-0/0/3 unit 0 family mpls maximum-labels 16
-set interfaces et-0/0/4 unit 0 family inet
+set interfaces et-0/0/4 unit 0 family inet address 10.0.0.7/31
+set interfaces et-0/0/4 unit 0 family iso
 set interfaces et-0/0/4 unit 0 family inet6
+set interfaces et-0/0/4 unit 0 family mpls maximum-labels 16
 set interfaces et-0/0/5 unit 0 family inet
 set interfaces et-0/0/5 unit 0 family inet6
 set interfaces et-0/0/6 unit 0 family inet
@@ -31,57 +32,17 @@ set interfaces et-0/0/10 unit 0 family inet
 set interfaces et-0/0/10 unit 0 family inet6
 set interfaces et-0/0/11 unit 0 family inet
 set interfaces et-0/0/11 unit 0 family inet6
-set interfaces lo0 unit 0 family inet address 2.2.2.2/32
+set interfaces lo0 unit 0 family inet address 1.1.1.11/32
 set interfaces lo0 unit 0 family iso
-set interfaces lo0 unit 0 family mpls   
-set policy-options policy-statement EXPORT_ISIS term ALGO from route-filter 2.2.2.2/32 exact
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 128 index 22
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 128 node-segment
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 129 index 222
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 129 node-segment
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 130 index 2222
-set policy-options policy-statement EXPORT_ISIS term ALGO then prefix-segment algorithm 130 node-segment
-set policy-options policy-statement EXPORT_ISIS term ALGO then accept
-set policy-options policy-statement EXPORT_ISIS term SUPPRESS from interface et-0/0/0.0
-set policy-options policy-statement EXPORT_ISIS term SUPPRESS from interface et-0/0/1.0
-set policy-options policy-statement EXPORT_ISIS term SUPPRESS then reject
-set routing-options flex-algorithm 128 definition metric-type igp-metric
-set routing-options flex-algorithm 128 use-transport-class
-set routing-options flex-algorithm 129 definition admin-group include-any RED
-set routing-options flex-algorithm 129 use-transport-class
-set routing-options flex-algorithm 130 definition admin-group include-any blue
-set routing-options flex-algorithm 130 use-transport-class
-set routing-options router-id 2.2.2.2
-set routing-options route-distinguisher-id-use-router-id
-set routing-options transport-class auto-create
-set protocols isis interface et-0/0/0.0 level 2 post-convergence-lfa
+set interfaces lo0 unit 0 family inet6 address 2001:db8::11/128
+set interfaces lo0 unit 0 family mpls
+set routing-options router-id 1.1.1.11
 set protocols isis interface et-0/0/0.0 point-to-point
-set protocols isis interface et-0/0/1.0 level 2 post-convergence-lfa
 set protocols isis interface et-0/0/1.0 point-to-point
-set protocols isis interface et-0/0/2.0 level 2 post-convergence-lfa
 set protocols isis interface et-0/0/2.0 point-to-point
-set protocols isis interface et-0/0/3.0 level 2 post-convergence-lfa
 set protocols isis interface et-0/0/3.0 point-to-point
+set protocols isis interface et-0/0/4.0 point-to-point
 set protocols isis interface all level 2 post-convergence-lfa
 set protocols isis interface lo0.0 passive
-set protocols isis source-packet-routing srgb start-label 10000
-set protocols isis source-packet-routing srgb index-range 20000
-set protocols isis source-packet-routing node-segment ipv4-index 2
-set protocols isis source-packet-routing flex-algorithm 128
-set protocols isis source-packet-routing flex-algorithm 129
-set protocols isis source-packet-routing flex-algorithm 130
-set protocols isis level 1 disable      
-set protocols isis spf-options microloop-avoidance post-convergence-path
-set protocols isis backup-spf-options use-post-convergence-lfa
-set protocols isis backup-spf-options use-source-packet-routing
-set protocols isis traffic-engineering advertisement always
-set protocols isis export EXPORT_ISIS
-set protocols isis net 49.0002.0002.0002.0002.00
-set protocols mpls admin-groups RED 0
-set protocols mpls admin-groups blue 1
-set protocols mpls icmp-tunneling
-set protocols mpls interface all
-set protocols mpls interface et-0/0/1.0 admin-group RED
-set protocols mpls interface et-0/0/0.0 admin-group RED
-set protocols lldp port-id-subtype interface-name
-set protocols lldp interface all
+set protocols isis level 1 disable
+set protocols isis net 49.0001.0001.0001.0011.00
