@@ -1,0 +1,51 @@
+set system host-name PE3
+set interfaces et-0/0/0 unit 0 family inet address 10.10.10.2/30
+set interfaces et-0/0/0 unit 0 family iso
+set interfaces et-0/0/0 unit 0 family inet6
+set interfaces et-0/0/0 unit 0 family mpls maximum-labels 16
+set interfaces et-0/0/1 unit 0 family inet address 10.10.10.16/31
+set interfaces et-0/0/1 unit 0 family iso
+set interfaces et-0/0/1 unit 0 family inet6
+set interfaces et-0/0/1 unit 0 family mpls maximum-labels 16
+set interfaces et-0/0/2 unit 0 family inet address 10.10.10.18/31
+set interfaces et-0/0/2 unit 0 family iso
+set interfaces et-0/0/2 unit 0 family inet6
+set interfaces et-0/0/2 unit 0 family mpls maximum-labels 16
+set interfaces et-0/0/3 unit 0 family inet address 10.10.10.15/31
+set interfaces et-0/0/3 unit 0 family iso
+set interfaces et-0/0/3 unit 0 family mpls maximum-labels 16
+set interfaces et-0/0/4 unit 0 vlan-id 10
+set interfaces et-0/0/4 unit 0 family inet
+set interfaces et-0/0/4 unit 0 family inet6
+set interfaces et-0/0/5 unit 0 family inet
+set interfaces et-0/0/5 unit 0 family inet6
+set interfaces et-0/0/6 unit 0 family inet
+set interfaces et-0/0/6 unit 0 family inet6
+set interfaces et-0/0/7 unit 0 family inet
+set interfaces et-0/0/7 unit 0 family inet6
+set interfaces et-0/0/8 unit 0 family inet
+set interfaces et-0/0/8 unit 0 family inet6
+set interfaces et-0/0/9 unit 0 family inet
+set interfaces et-0/0/9 unit 0 family inet6
+set interfaces et-0/0/10 unit 0 family inet
+set interfaces et-0/0/10 unit 0 family inet6
+set interfaces et-0/0/11 unit 0 family inet
+set interfaces et-0/0/11 unit 0 family inet6
+set interfaces lo0 unit 0 family inet address 1.1.1.3/32
+set interfaces lo0 unit 0 family iso
+set interfaces lo0 unit 0 family inet6 address 2001:db8::3/128
+set interfaces lo0 unit 0 family mpls
+set routing-options router-id 1.1.1.3
+set routing-options autonomous-system 1
+set protocols isis interface et-0/0/0.0 point-to-point
+set protocols isis interface et-0/0/1.0 point-to-point
+set protocols isis interface et-0/0/2.0 point-to-point
+set protocols isis interface et-0/0/3.0 point-to-point
+set protocols isis interface lo0.0 passive
+set protocols isis level 1 disable
+set protocols isis net 49.0001.0001.0001.0003.00
+set protocols ldp interface lo0.0
+set protocols mpls icmp-tunneling
+set protocols mpls interface all
+set protocols lldp port-id-subtype interface-name
+set protocols lldp interface all
