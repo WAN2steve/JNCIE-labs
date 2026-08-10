@@ -14,7 +14,6 @@ set interfaces et-0/0/2 unit 0 family mpls maximum-labels 16
 set interfaces et-0/0/3 unit 0 family inet address 10.10.10.15/31
 set interfaces et-0/0/3 unit 0 family iso
 set interfaces et-0/0/3 unit 0 family mpls maximum-labels 16
-set interfaces et-0/0/4 unit 0 vlan-id 10
 set interfaces et-0/0/4 unit 0 family inet
 set interfaces et-0/0/4 unit 0 family inet6
 set interfaces et-0/0/5 unit 0 family inet
