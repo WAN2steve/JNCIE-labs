@@ -34,7 +34,6 @@ set routing-options router-id 1.1.1.1
 set routing-options route-distinguisher-id-use-router-id
 set routing-options autonomous-system 1
 set routing-options transport-class auto-create
-set routing-options forwarding-table export pplb
 set protocols isis interface et-0/0/0.0 level 1 disable
 set protocols isis interface et-0/0/0.0 point-to-point
 set protocols isis interface et-0/0/1.0 level 1 disable
